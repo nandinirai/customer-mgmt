@@ -1,0 +1,28 @@
+# Build output
+target/
+dist/
+build/
+*.jar
+*.war
+
+# Node
+node_modules/
+.vite/
+coverage/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / local env
+*.log
+.env
+.env.local
