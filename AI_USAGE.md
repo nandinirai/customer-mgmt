@@ -75,18 +75,18 @@ what review has to be looking for, and it is why "it runs" is not validation.
 ## Effect on the process
 
 AI removed almost all of the typing and none of the judgement. The speedup was concentrated in
-boilerplate — configuration, DTOs, CSS, the first pass at tests — and it was close to zero on the
+boilerplate — configuration, DTOs, CSS, the first pass at tests  and it was close to zero on the
 parts that decide whether this is a good submission: what to do about duplicates, where the
 concurrency hole is, which validation rules exclude real people.
 
 Two things changed in how I worked. First, review became the expensive step rather than writing, and
 it is a different kind of reading: the failure mode is confident, idiomatic-looking code with a
 subtle behavioural bug, so skimming for style catches nothing. Second, the time saved went into
-things that would otherwise have been cut for time - the concurrency handling on duplicate creation,
+things that would otherwise have been cut for time  the concurrency handling on duplicate creation,
 the out-of-order response guard in the list hook, the leap-day age cases. That is the honest benefit:
 not a faster CRUD app, but a wider margin for the details.
 
 The risk I would flag to a team adopting this: an AI-generated test suite written alongside its
-implementation asserts what the code does. Reversing that — breaking the code to prove the test
+implementation asserts what the code does. Reversing that - breaking the code to prove the test
 fails — is the only cheap way I know to tell a real suite from a green one.
 
