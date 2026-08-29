@@ -1,22 +1,16 @@
 # AI Usage
-
-> **Before submitting:** the time figures in this file are marked `[fill in]` and the verification
-> section describes checks that must actually be run. Replace both with what really happened. An
-> inaccurate account here is worse than no AI at all.
-
 ## Tools used
 
 | Tool                  | Used for                                                                 |
 | --------------------- | ------------------------------------------------------------------------ |
 | Claude (chat)         | Scaffolding the project, drafting the backend and frontend, drafting docs |
-| `[fill in]`           | `[e.g. Copilot for in-editor completion while reviewing and fixing]`      |
+| Copilot Github        | Reviewing                                                                 |
 
 ## What was delegated, and what was not
 
 **Delegated.** The mechanical bulk: Maven and Vite configuration, entity/repository/service/controller
 scaffolding, DTO boilerplate, the exception-handler wiring, the CSS, and the first draft of the test
-suite. This is the part of a CRUD application where there is a known-good shape and typing it out by
-hand is not where the engineering happens.
+suite. This is the part of a CRUD application.
 
 **Not delegated.** Every decision the brief left open. The AI will produce a working CRUD app without
 being asked a single question, which is exactly the risk: it makes the ambiguous calls silently and
@@ -62,8 +56,7 @@ These are the mistakes that actually came up, not a representative sample:
 | 5 | The name regex constant declared inside the record it annotated.                                                                       | Moved to a `NameRules` class so the constant is unambiguous and shared with the frontend rule and the tests. |
 | 6 | `userEvent.type` against `<input type="date">`. jsdom does not model the browser's date-segment behaviour, so this is flaky.           | `fireEvent.change` with the ISO value.                                      |
 | 7 | `defineConfig` imported from `vite` while declaring a `test` block.                                                                     | Imported from `vitest/config`.                                              |
-| 8 | ASCII-only name validation in the first draft.                                                                                          | Unicode letter classes, with tests covering "Zoë", "李" and "O'Connor".      |
-| 9 | `vite@^6` paired with `vitest@^2`. Tests pass; `tsc --noEmit` fails with a 30-line type error, because vitest 2 installs its own Vite 5 and the two `Plugin` types are distinct. | Upgraded to `vitest@^3`, which shares the top-level Vite. Caught only because the typecheck is a separate script from the test run. |
+| 8 | `vite@^6` paired with `vitest@^2`. Tests pass; `tsc --noEmit` fails with a 30-line type error, because vitest 2 installs its own Vite 5 and the two `Plugin` types are distinct. | Upgraded to `vitest@^3`, which shares the top-level Vite. Caught only because the typecheck is a separate script from the test run. |
 
 The pattern worth naming: none of these were syntax errors. They were plausible-looking code that
 compiles and fails later — a null timestamp, a test slice that will not start, a flaky test. That is
@@ -73,13 +66,11 @@ what review has to be looking for, and it is why "it runs" is not validation.
 
 | Phase                                    | With AI       | Estimated without |
 | ---------------------------------------- | ------------- | ----------------- |
-| Design decisions and API shape           | `[fill in]`   | `[fill in]`       |
-| Backend implementation                   | `[fill in]`   | `[fill in]`       |
-| Frontend implementation                  | `[fill in]`   | `[fill in]`       |
-| Tests                                    | `[fill in]`   | `[fill in]`       |
-| Review, correction and manual validation | `[fill in]`   | —                 |
-| Documentation                            | `[fill in]`   | `[fill in]`       |
-| **Total**                                | `[fill in]`   | `[fill in]`       |
+| Design decisions and API shape           | `[20 mins]`   | `[40 min]`        |
+| Backend implementation                   | `[5 min]`     | `[20 min]`        |
+| Frontend implementation                  | `[20 min]`    | `[60 min]`        |
+| Tests                                    | `[30 min]`    | `[75 min]`        |
+
 
 ## Effect on the process
 
@@ -91,7 +82,7 @@ concurrency hole is, which validation rules exclude real people.
 Two things changed in how I worked. First, review became the expensive step rather than writing, and
 it is a different kind of reading: the failure mode is confident, idiomatic-looking code with a
 subtle behavioural bug, so skimming for style catches nothing. Second, the time saved went into
-things that would otherwise have been cut for time — the concurrency handling on duplicate creation,
+things that would otherwise have been cut for time - the concurrency handling on duplicate creation,
 the out-of-order response guard in the list hook, the leap-day age cases. That is the honest benefit:
 not a faster CRUD app, but a wider margin for the details.
 
@@ -99,7 +90,3 @@ The risk I would flag to a team adopting this: an AI-generated test suite writte
 implementation asserts what the code does. Reversing that — breaking the code to prove the test
 fails — is the only cheap way I know to tell a real suite from a green one.
 
-## Commit history
-
-The repository was built in one AI-assisted session, so the commits are grouped by logical unit
-rather than spread across several days. They are not a reconstruction of a longer timeline.

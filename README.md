@@ -1,6 +1,5 @@
 # Customer Management
 
-A small full-stack application for creating and viewing customer records.
 
 - **Backend** — Java 17, Spring Boot 3.3, Spring Data JPA, H2 (in-memory), Bean Validation
 - **Frontend** — React 19, TypeScript, Vite
@@ -122,7 +121,7 @@ The brief is deliberately thin in places. These are the calls I made and why.
 and a birth date, but an identical payload is far more often a double-submitted form. A spurious
 duplicate is much harder to find later than a rejected request is to work around now, so the API
 returns `409`. The service checks first and the database enforces a unique constraint on
-`(first_name, last_name, date_of_birth)` — the check alone loses to a concurrent request, so the
+`(first_name, last_name, date_of_birth)` - the check alone loses to a concurrent request, so the
 constraint is the real guarantee and the service translates the resulting integrity violation into
 the same `409`. If genuine duplicates turn out to matter, the fix is a client-supplied override
 flag rather than dropping the constraint.
