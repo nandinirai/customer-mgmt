@@ -35,9 +35,10 @@ constraints:
 
 ## How the generated code was validated
 
-1. **Compile and run.** `mvn test` and `npm test` against the real toolchain, plus a manual pass
-   through the UI creating, searching and duplicating a record. `[Record here what you actually ran
-   and anything that failed first time.]`
+1. **Compile and run.** `npm test` (22 passing), `npx tsc --noEmit` and `npm run build` were run
+   against the real toolchain, and the typecheck caught a dependency mismatch the passing tests did
+   not (see correction 9). `[Backend: record the result of `mvn test` and a manual pass through the
+   UI creating, searching and duplicating a record.]`
 2. **Read it against the framework docs, not against plausibility.** Generated Spring code is
    confidently wrong in ways that still compile; the annotations were checked against the actual
    Spring Boot 3.3 and Bean Validation behaviour rather than accepted because they looked idiomatic.
@@ -62,6 +63,7 @@ These are the mistakes that actually came up, not a representative sample:
 | 6 | `userEvent.type` against `<input type="date">`. jsdom does not model the browser's date-segment behaviour, so this is flaky.           | `fireEvent.change` with the ISO value.                                      |
 | 7 | `defineConfig` imported from `vite` while declaring a `test` block.                                                                     | Imported from `vitest/config`.                                              |
 | 8 | ASCII-only name validation in the first draft.                                                                                          | Unicode letter classes, with tests covering "Zoë", "李" and "O'Connor".      |
+| 9 | `vite@^6` paired with `vitest@^2`. Tests pass; `tsc --noEmit` fails with a 30-line type error, because vitest 2 installs its own Vite 5 and the two `Plugin` types are distinct. | Upgraded to `vitest@^3`, which shares the top-level Vite. Caught only because the typecheck is a separate script from the test run. |
 
 The pattern worth naming: none of these were syntax errors. They were plausible-looking code that
 compiles and fails later — a null timestamp, a test slice that will not start, a flaky test. That is
