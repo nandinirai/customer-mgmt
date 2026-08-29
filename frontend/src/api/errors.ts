@@ -1,10 +1,5 @@
 import type { FieldError } from '../types'
 
-/**
- * A failure the server described in RFC 9457 terms. Keeping the field errors
- * structured is what lets the form put each message next to the input that
- * caused it instead of dumping one blob at the top.
- */
 export class ApiError extends Error {
   readonly status: number
   readonly title: string

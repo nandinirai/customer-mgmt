@@ -9,14 +9,6 @@ import java.lang.annotation.Target;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-/**
- * A plausible human birth date: in the past, and not implausibly long ago.
- *
- * <p>{@code @Past} alone accepts the year 1200, which is a data-entry mistake
- * rather than a customer. The upper bound is deliberately generous — the oldest
- * verified human age is around 122 — so it rejects typos without rejecting
- * anyone real.
- */
 @Documented
 @Constraint(validatedBy = BirthDateValidator.class)
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER,

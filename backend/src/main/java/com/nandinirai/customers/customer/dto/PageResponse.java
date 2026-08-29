@@ -5,13 +5,6 @@ import java.util.function.Function;
 
 import org.springframework.data.domain.Page;
 
-/**
- * A stable pagination envelope.
- *
- * <p>Serialising Spring's {@code PageImpl} directly leaks framework internals
- * into the public contract and its JSON shape is explicitly not guaranteed
- * across versions, so the API owns its own wrapper.
- */
 public record PageResponse<T>(
         List<T> items,
         int page,

@@ -8,7 +8,6 @@ export default function App() {
   const [search, setSearch] = useState('')
   const { customers, totalItems, status, error, reload } = useCustomers(search)
 
-  // Debounced so a five-letter surname is one query, not five.
   useEffect(() => {
     const timer = window.setTimeout(() => setSearch(searchInput), 250)
     return () => window.clearTimeout(timer)

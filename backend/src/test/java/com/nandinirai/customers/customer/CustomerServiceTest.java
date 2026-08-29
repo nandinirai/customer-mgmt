@@ -30,7 +30,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
-    /** Pinned so age assertions do not change meaning on someone's birthday. */
     private final Clock clock = Clock.fixed(Instant.parse("2025-06-15T00:00:00Z"), ZoneOffset.UTC);
 
     @Mock

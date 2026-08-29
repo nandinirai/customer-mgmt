@@ -25,8 +25,6 @@ function jsonResponse(status: number, body: unknown): Response {
 async function fillForm(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText('First name'), 'Jane')
   await user.type(screen.getByLabelText('Last name'), 'Doe')
-  // Date inputs are set directly: keystroke simulation on type="date" depends
-  // on the browser's locale-specific segment order, which jsdom does not model.
   fireEvent.change(screen.getByLabelText('Date of birth'), { target: { value: '1990-04-17' } })
 }
 

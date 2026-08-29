@@ -30,21 +30,6 @@ public class CustomerService {
         this.clock = clock;
     }
 
-    /**
-     * Creates a customer.
-     *
-     * <p>The brief does not say whether two people can share a name and birth
-     * date. They can in reality, but silently accepting an identical payload is
-     * far more often a double-submitted form than genuine twins, and a
-     * duplicate record is harder to detect later than a rejected request is to
-     * override now. So this rejects with 409 and the README documents the
-     * override path.
-     *
-     * <p>The pre-check is not sufficient on its own: two concurrent requests can
-     * both pass it. The database unique constraint is the real guarantee, and
-     * the catch below turns the resulting integrity violation into the same 409
-     * the caller would have got from the pre-check.
-     */
     @Transactional
     public CustomerResponse create(CreateCustomerRequest request) {
         if (repository.existsByFirstNameIgnoreCaseAndLastNameIgnoreCaseAndDateOfBirth(

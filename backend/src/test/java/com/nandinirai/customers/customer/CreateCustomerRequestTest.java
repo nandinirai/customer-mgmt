@@ -20,11 +20,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * The validation rules on their own, without a Spring context. Fast enough to
- * cover the name edge cases properly, which is where a naive regex does real
- * damage by rejecting people who exist.
- */
 class CreateCustomerRequestTest {
 
     private static ValidatorFactory factory;

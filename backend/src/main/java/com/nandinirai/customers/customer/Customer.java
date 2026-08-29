@@ -15,14 +15,7 @@ import jakarta.persistence.UniqueConstraint;
 
 import jakarta.persistence.PrePersist;
 
-/**
- * A customer record.
- *
- * <p>Date of birth is a {@link LocalDate}, not an instant: a birth date is a
- * calendar fact that does not shift with the reader's time zone. Age is
- * therefore derived on read rather than stored, since a stored age is wrong
- * from the day after it is written.
- */
+
 @Entity
 @Table(
         name = "customers",

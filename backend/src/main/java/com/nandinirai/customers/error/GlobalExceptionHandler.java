@@ -26,16 +26,6 @@ import org.springframework.web.method.annotation.HandlerMethodValidationExceptio
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-/**
- * Every error leaves this service as an RFC 9457 problem document, so clients
- * parse one shape whether the failure came from Jackson, Bean Validation, the
- * database or our own domain rules.
- *
- * <p>Two rules apply throughout: never echo a stack trace or an internal
- * message to the caller, and always log at the severity the operator needs
- * rather than the severity the exception suggests. A rejected form is not an
- * error the on-call engineer should be paged about.
- */
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 

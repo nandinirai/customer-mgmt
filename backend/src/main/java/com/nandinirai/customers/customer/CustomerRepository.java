@@ -11,10 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
-    /**
-     * Names are compared case-insensitively so "Jane Doe" and "jane doe" with the
-     * same birth date are treated as the same person.
-     */
+
     boolean existsByFirstNameIgnoreCaseAndLastNameIgnoreCaseAndDateOfBirth(
             String firstName, String lastName, LocalDate dateOfBirth);
 

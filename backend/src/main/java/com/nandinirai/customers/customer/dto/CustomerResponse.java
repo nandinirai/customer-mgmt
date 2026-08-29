@@ -7,10 +7,6 @@ import java.util.UUID;
 
 import com.nandinirai.customers.customer.Customer;
 
-/**
- * Outbound representation. Age is computed per request rather than stored, and
- * is included because every consumer of this data would otherwise recompute it.
- */
 public record CustomerResponse(
         UUID id,
         String firstName,

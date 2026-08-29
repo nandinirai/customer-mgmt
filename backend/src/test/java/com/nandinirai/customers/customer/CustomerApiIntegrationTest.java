@@ -16,11 +16,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * End-to-end through the real web stack, the real service and a real H2
- * database. These are the tests that would have caught a wiring or mapping
- * mistake that every mocked layer above happily agreed on.
- */
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CustomerApiIntegrationTest {
 

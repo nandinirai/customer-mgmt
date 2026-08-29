@@ -5,12 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * CORS is only needed when the UI is served from a different origin. In the
- * standard local setup the Vite dev server proxies {@code /api} to this
- * service, so no preflight happens at all — this exists for deployments that
- * split the two origins.
- */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 

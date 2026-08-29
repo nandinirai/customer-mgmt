@@ -34,11 +34,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
 
-    /**
-     * Sortable fields are whitelisted. Passing an arbitrary property through to
-     * Spring Data turns a query parameter into a probe of the entity model, and
-     * an unknown property surfaces as a 500 rather than a 400.
-     */
     private static final Set<String> SORTABLE = Set.of("firstName", "lastName", "dateOfBirth", "createdAt");
 
     private static final Sort DEFAULT_SORT = Sort.by(Sort.Direction.DESC, "createdAt");

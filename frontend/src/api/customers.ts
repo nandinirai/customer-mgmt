@@ -29,8 +29,6 @@ async function request<T>(url: string, init?: RequestInit): Promise<T> {
     return response.status === 204 ? (undefined as T) : ((await response.json()) as T)
   }
 
-  // A proxy or gateway can return HTML on error; never let that surface as a
-  // JSON parse exception the user has to interpret.
   const problem = await response.json().catch((): ProblemDetail => ({}))
   throw new ApiError(
     response.status,

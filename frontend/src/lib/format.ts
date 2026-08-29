@@ -4,8 +4,6 @@ export function formatDate(isoDate: string): string {
   if (!year || !month || !day) {
     return isoDate
   }
-  // Constructed as UTC so the displayed day never shifts by one for users
-  // west of Greenwich — a birth date has no time zone.
   const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)))
   return new Intl.DateTimeFormat(undefined, {
     day: 'numeric',
@@ -17,7 +15,6 @@ export function formatDate(isoDate: string): string {
 
 export const MAX_NAME_LENGTH = 100
 
-/** Mirrors the server rule in NameRules so the user is told before the round trip. */
 const NAME_PATTERN = /^\p{L}[\p{L}\p{M}'\u2019\-. ]*$/u
 
 export function validateName(label: string, value: string): string | null {

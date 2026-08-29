@@ -30,10 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Covers the HTTP contract only: status codes, headers and error shape. The
- * service is mocked, because what is under test here is the edge, not the rules.
- */
 @WebMvcTest(CustomerController.class)
 class CustomerControllerTest {
 

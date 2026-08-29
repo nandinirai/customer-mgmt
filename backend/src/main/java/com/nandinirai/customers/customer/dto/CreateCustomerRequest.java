@@ -11,13 +11,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/**
- * Incoming payload for creating a customer.
- *
- * <p>Whitespace is normalised in the compact constructor, which Jackson invokes
- * during deserialisation — so validation and persistence both see the cleaned
- * value and " Jane " can never be stored with its padding.
- */
 public record CreateCustomerRequest(
 
         @NotBlank(message = "is required")
